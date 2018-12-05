@@ -43,3 +43,5 @@ aws lambda create-function \
   --runtime provided \
   --role $ROLE_ARN \
   --layers $RUNTIME_ARN:$RUNTIME_VERSION
+
+rm $ZIP_NAME

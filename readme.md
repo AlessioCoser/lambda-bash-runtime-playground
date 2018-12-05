@@ -1,6 +1,10 @@
 # Custom Runtime
 https://docs.aws.amazon.com/lambda/latest/dg/runtimes-walkthrough.html
 
+# Prerequisites
+- aws-cli
+- Aws account configured
+- An Aws Role configured
 
 # Deploy runtime
 
