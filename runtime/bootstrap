@@ -26,11 +26,16 @@ do
   RESPONSE=$($(echo "$_HANDLER" | cut -d. -f2) "$EVENT_DATA")
 
   echo "----------- variables ------------------"
-  echo "HEADERS: "$(cat $HEADERS)
-  echo "LAMBDA_TASK_ROOT: "$LAMBDA_TASK_ROOT
-  echo "_HANDLER: "$_HANDLER
-  echo "EVENT_DATA: "$EVENT_DATA
-  echo "----------------------------------------"
+  # HEADERS: HTTP/1.1 200 OK
+  # Content-Type: application/json
+  # Lambda-Runtime-Aws-Request-Id: 037111c0-f958-11e8-a09e-277a3f1da356
+  # Lambda-Runtime-Deadline-Ms: 1544101707623
+  # Lambda-Runtime-Invoked-Function-Arn: arn:aws:lambda:eu-west-3:XXXXXXXXXXXX:function:bash-function
+  # Date: Thu, 06 Dec 2018 13:08:24 GMT
+  # Content-Length: 16
+  echo "LAMBDA_TASK_ROOT: "$LAMBDA_TASK_ROOT # /var/task
+  echo "_HANDLER: "$_HANDLER # function.handler
+  echo "EVENT_DATA: "$EVENT_DATA # { "text": "Hello" }
 
   # Send the response
   curl -X POST "http://${AWS_LAMBDA_RUNTIME_API}/2018-06-01/runtime/invocation/$REQUEST_ID/response"  -d "$RESPONSE"
