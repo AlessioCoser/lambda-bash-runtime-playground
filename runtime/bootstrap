@@ -14,7 +14,7 @@ while true
 do
   HEADERS="$(mktemp)"
 
-  echo "----------- HEADERS=\$(mktemp)------------------"
+  echo "----------- HEADERS FILE ------------------"
   echo $(mktemp)
   echo "------------------------------------------------"
 
@@ -26,6 +26,7 @@ do
   RESPONSE=$($(echo "$_HANDLER" | cut -d. -f2) "$EVENT_DATA")
 
   echo "----------- variables ------------------"
+  echo "HEADERS: "$(cat $HEADERS)
   echo "LAMBDA_TASK_ROOT: "$LAMBDA_TASK_ROOT
   echo "_HANDLER: "$_HANDLER
   echo "EVENT_DATA: "$EVENT_DATA
