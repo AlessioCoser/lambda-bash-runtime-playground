@@ -1,28 +1,27 @@
 # Custom Runtime
-https://docs.aws.amazon.com/lambda/latest/dg/runtimes-walkthrough.html
+I followed [this AWS guide](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-walkthrough.html) and I scripted runtime and function creation.
 
 # Prerequisites
-- aws-cli
-- Aws account configured
-- An Aws Role configured
+- aws-cli installed
+- AWS account configured
+- An AWS IAM Role configured in order to be applied to the lambda function
 
 # Deploy runtime
 
 ```
+# USAGE: ./deploy_runtime.sh [runtime_name]
+
 ./deploy_runtime.sh bash-runtime
 ```
 
 # Deploy function using the runtime
-first arg: role name
-second arg: runtime-name
-third arg: runtime-version
-fourth arg: function-name
 ```
-./deploy_function.sh lambda_basic_execution bash-runtime 3 bash-function
+# USAGE: ./deploy_function.sh [role_name] [custom_runtime_name] [custom_runtime_version] [function_name]
+
+./deploy_function.sh lambda_basic_execution bash-runtime 1 bash-function
 ```
 
-# Test Function
-
+# Test the Function
 ```
 aws lambda invoke \
   --function-name bash-function \
